@@ -1,0 +1,72 @@
+/**
+ * Embedded Mode Styles
+ * Hides UI controls for research study participants
+ * Command input remains visible for ATC commands
+ */
+
+/* Hide entire controls menu (all footer buttons) */
+.controls-menu {
+    display: none !important;
+}
+
+/* Hide individual control buttons (backup if controls-menu doesn't work) */
+.fast-forwards,
+.toggle-pause,
+.switch-airport,
+.toggle-labels,
+.toggle-sids,
+.toggle-stars,
+.toggle-airspace,
+.toggle-restricted-areas,
+.toggle-terrain,
+.toggle-video-map,
+.toggle-speech,
+.toggle-traffic,
+#toggle-options,
+.toggle-airport-guide,
+.toggle-tutorial,
+.js-changelogToggle {
+    display: none !important;
+}
+
+/* Hide score display */
+#score {
+    display: none !important;
+}
+
+/* Hide strip view sidebar (arrivals/departures list) */
+#sidebar,
+.stripView {
+    display: none !important;
+}
+
+/* Hide all dialog modals */
+#airport-switch,
+#airportGuide-container,
+.changelog-container,
+.dialog {
+    display: none !important;
+}
+
+/* Hide tutorial overlay */
+#tutorial {
+    display: none !important;
+}
+
+/* Hide pause overlay */
+#paused {
+    display: none !important;
+}
+
+/* Ensure command input and autocomplete remain visible */
+#command,
+#autocomplete {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Keep footer visible but clean (only shows command input) */
+.footer {
+    height: auto;
+    min-height: 40px;
+}
