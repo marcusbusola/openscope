@@ -19,6 +19,7 @@ import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
 import UiController from './ui/UiController';
 import ScoreController from './game/ScoreController';
+import PostMessageHandler from './lib/postMessageHandler';
 import { speech_init } from './speech';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
@@ -57,6 +58,7 @@ export default class AppController {
         this.inputController = null;
         this.canvasController = null;
         this.changelogController = null;
+        this.postMessageHandler = null;
 
         return this._init()
             .setupHandlers()
@@ -184,6 +186,10 @@ export default class AppController {
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
         window.aircraftController = this.aircraftController;
+
+        // Initialize PostMessage handler for external control (iframe embedding)
+        this.postMessageHandler = new PostMessageHandler(this.aircraftController, GameController);
+        window.postMessageHandler = this.postMessageHandler;
 
         UiController.init(this.$element);
 
