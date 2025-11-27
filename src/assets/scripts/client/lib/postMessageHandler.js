@@ -134,7 +134,7 @@ export default class PostMessageHandler {
      * Handle spawn aircraft command
      */
     _handleSpawn(data) {
-        const { callsign, type, altitude, heading, speed, position } = data;
+        const { callsign, type, altitude, heading, speed, position } = data.payload || data;
 
         console.log('[PostMessageHandler] Spawn request received for:', callsign);
         console.log('[PostMessageHandler] Aircraft props:', { type, altitude, heading, speed, position });
@@ -185,7 +185,7 @@ export default class PostMessageHandler {
      * Handle despawn aircraft command
      */
     _handleDespawn(data) {
-        const { callsign } = data;
+        const { callsign } = data.payload || data;
 
         if (!this.aircraftController) {
             this._sendError(data.messageId, 'Aircraft controller not available');
@@ -243,7 +243,7 @@ export default class PostMessageHandler {
      * Handle generic command
      */
     _handleCommand(data) {
-        const { command } = data;
+        const { command } = data.payload || data;
 
         // Commands not supported in this simplified version
         this._sendError(data.messageId, 'Generic commands not yet supported');
@@ -302,7 +302,7 @@ export default class PostMessageHandler {
      * Handle timewarp command
      */
     _handleTimewarp(data) {
-        const { speed } = data;
+        const { speed } = data.payload || data;
         // Timewarp not implemented - send success anyway
         this._sendResponse(data.messageId, { success: true, speed: speed });
     }
